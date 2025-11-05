@@ -30,9 +30,10 @@ for (let i = 0; i < atletas.length; i++) {
 
 function calculeMedia(notas) {
     let soma = 0;
+    console.log("Sorted notes ", ordenar(notas))
+    notas = ordenar(notas)
     removerMaiorNota(notas)
     removerMenorNota(notas)
-    console.log("notas final", notas)
 
     notas.map(function (nota) {
         soma += nota;
@@ -44,21 +45,23 @@ function calculeMedia(notas) {
 }
 
 function removerMenorNota(notas){
-    let menorNota = 0
-    for (let i = 1; i < notas.length; i++){
-        if (notas[menorNota] > notas[i]){
-            menorNota = i
-        }
-    }
-    notas.splice(menorNota, 1);
+    notas.splice(0, 1);
 }
 
 function removerMaiorNota(notas){
-    let maiorNota = 0
-    for ( let i = 1; i < notas.length; i++){     
-        if ( notas[maiorNota] < notas[i]) {
-            maiorNota = i
-        }
-    }
-    notas.splice(maiorNota, 1)
+    notas.splice(notas.length-1)
 }   
+
+function ordenar(notas){
+ return notas.sort(function (a, b) {
+  if (a > b) {
+    return 1;
+  }
+  if (a < b) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+
+}
